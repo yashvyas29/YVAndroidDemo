@@ -1,7 +1,11 @@
 package com.yash.assignment2_yash;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
@@ -123,7 +127,8 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        return false;
+        getMenuInflater().inflate(R.menu.action_bar_menu, menu);
+        return true;
     }
 
     @Override
@@ -131,6 +136,10 @@ public class MainActivity extends AppCompatActivity
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+        if (id == R.id.action_notify) {
+            notifyUser();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -366,5 +375,30 @@ public class MainActivity extends AppCompatActivity
                 arrTitles.add(userName);
             }
         });
+    }
+
+    private void notifyUser() {
+
+        // prepare intent which is triggered if the notification is selected
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        // Use System.currentTimeMillis() to have a unique ID for the pending intent
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+        // Build notification, the addAction re-use the same intent to keep the example short
+        Notification notification  = new Notification.Builder(this)
+                .setContentTitle("Update Available")
+                .setContentText("Improved Productivity & Cost Effectiveness for Healthcare Service Provider")
+                .setSmallIcon(R.mipmap.ic_action_refresh)
+                .setContentIntent(pIntent)
+                .setAutoCancel(true)
+//                .addAction(R.drawable.icon, "Call", pIntent)
+//                .addAction(R.drawable.icon, "More", pIntent)
+//                .addAction(R.drawable.icon, "And more", pIntent)
+                .build();
+
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        notificationManager.notify(0, notification);
     }
 }
