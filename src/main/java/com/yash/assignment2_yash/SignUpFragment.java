@@ -300,8 +300,13 @@ public class SignUpFragment extends Fragment {
 
     public void loginButtonPressed() {
         Log.d("Login", "Button Pressed!");
+        if (getView().hasFocus()) {
+            mainActivity.hideSoftKeyboard();
+        }
+        LoginFragment loginFragment = mainActivity.loginFragment;
         mainActivity.fragmentManager.beginTransaction()
-                .remove(this)
+                .replace(R.id.drawer_layout, loginFragment, getString(R.string.login_title))
+//                .remove(this)
                 .commit();
     }
 }

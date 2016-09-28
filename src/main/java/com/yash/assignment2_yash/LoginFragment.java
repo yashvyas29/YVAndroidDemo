@@ -23,6 +23,8 @@ import android.widget.Toast;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static com.google.android.gms.analytics.internal.zzy.g;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -283,10 +285,14 @@ public class LoginFragment extends Fragment {
 
     public void signUpButtonPressed() {
         Log.d("Sign Up", "Button Pressed!");
+        if (getView().hasFocus()) {
+            mainActivity.hideSoftKeyboard();
+        }
         SignUpFragment signUpFragment = new SignUpFragment();
         mainActivity.fragmentManager.beginTransaction()
-                .add(R.id.drawer_layout, signUpFragment, getString(R.string.signup_title))
-                .addToBackStack(getString(R.string.signup_title))
+                .replace(R.id.drawer_layout, signUpFragment, getString(R.string.signup_title))
+//                .add(R.id.drawer_layout, signUpFragment, getString(R.string.signup_title))
+//                .addToBackStack(getString(R.string.signup_title))
                 .commit();
     }
 }

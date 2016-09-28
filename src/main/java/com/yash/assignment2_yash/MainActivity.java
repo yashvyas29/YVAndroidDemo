@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, OnFragmentInteractionListener {
 
     private NavigationView navigationView;
-    private LoginFragment loginFragment = null;
     private DashboardFragment dashboardFragment = null;
     private LocationFragment locationFragment = null;
     private ArrayList<String> arrItemIds = null;
@@ -45,6 +44,7 @@ public class MainActivity extends AppCompatActivity
     public FragmentManager fragmentManager;
     public SharedPreferences preferences;
     public YVSQLiteHelper sqLiteHelper;
+    public LoginFragment loginFragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity
         preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
         Boolean isLogin = preferences.getBoolean("isLogin", false);
         fragmentManager = getSupportFragmentManager();
+        sqLiteHelper = new YVSQLiteHelper(this);
 
         arrItemIds = new ArrayList<String>();
         arrTitles = new ArrayList<String>();
@@ -95,7 +96,6 @@ public class MainActivity extends AppCompatActivity
                     .commit();
         }
 
-        sqLiteHelper = new YVSQLiteHelper(this);
         processExtraData(getIntent());
     }
 
@@ -273,7 +273,7 @@ public class MainActivity extends AppCompatActivity
         if (signUpFragment != null) {
             fragmentManager.beginTransaction()
                     .remove(signUpFragment)
-                    .remove(loginFragment)
+//                    .remove(loginFragment)
                     .replace(R.id.content, dashboardFragment, this.getString(R.string.home_title))
                     .commit();
         } else {
