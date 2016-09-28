@@ -13,13 +13,22 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
-    <string name="view_pager_text1">Infogain names Rikki Jolly as VP of Global Delivery for Retail</string>
-    <string name="view_pager_text2">Infogain is proud to be featured in the Gartner Report</string>
-    <string name="view_pager_text3">Robb La Velle Joins Infogain as VP and GPL, BA &amp; TS</string>
-    <string name="view_pager_text4">Infogain announces Sunil Bhatia as CEO</string>
-
     <string name="button_title1">Oracle Knowledge</string>
     <string name="button_title2">Business Analytics</string>
     <string name="button_title3">Customer Support</string>
     <string name="button_title4">Mobility</string>
+
+    <string-array name="pager_text">
+        <item>Infogain names Rikki Jolly as VP of Global Delivery for Retail</item>
+        <item>Infogain is proud to be featured in the Gartner Report</item>
+        <item>Robb La Velle Joins Infogain as VP and GPL, BA &amp; TS</item>
+        <item>Infogain announces Sunil Bhatia as CEO</item>
+    </string-array>
+
+    <string-array name="pager_url">
+        <item>http://www.infogain.com/wp-content/uploads/2016/01/day-one-banner.jpg</item>
+        <item>http://www.infogain.com/wp-content/uploads/2016/09/web-banner-1.jpg</item>
+        <item>http://www.infogain.com/wp-content/uploads/2016/09/web-banner-3.jpg</item>
+        <item>http://www.infogain.com/wp-content/uploads/2016/09/web-banner-4.jpg</item>
+    </string-array>
 </resources>

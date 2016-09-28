@@ -8,7 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+
+import java.util.ArrayList;
+
+import static android.icu.lang.UCharacter.GraphemeClusterBreak.V;
+import static com.bumptech.glide.Glide.with;
+import static com.google.android.gms.analytics.internal.zzy.c;
+import static com.google.android.gms.analytics.internal.zzy.d;
 
 
 /**
@@ -76,28 +89,30 @@ public class ViewPagerFragment extends Fragment {
         ImageView imageView = (ImageView) view.findViewById(R.id.pagerImageView);
         TextView textView = (TextView) view.findViewById(R.id.pagerTextView);
 
-        switch (currentPage) {
-            case 0:
-                imageView.setImageResource(R.drawable.banner1);
-                textView.setText(R.string.view_pager_text1);
-                break;
-            case 1:
-                imageView.setImageResource(R.drawable.banner2);
-                textView.setText(R.string.view_pager_text2);
-                break;
-            case 2:
-                imageView.setImageResource(R.drawable.banner3);
-                textView.setText(R.string.view_pager_text3);
-                break;
-            case 3:
-                imageView.setImageResource(R.drawable.banner4);
-                textView.setText(R.string.view_pager_text4);
-                break;
-            default:
-                imageView.setImageResource(R.drawable.banner1);
-                textView.setText(R.string.view_pager_text1);
-                break;
-        }
+        String[] arrTexts = getResources().getStringArray(R.array.pager_text);
+        String[] arrUrls = getResources().getStringArray(R.array.pager_url);
+
+        final ProgressBar progressBar = (ProgressBar) view.findViewById(R.id.pagerProgress);
+        Glide
+                .with(this)
+                .load(arrUrls[currentPage])
+                .listener(new RequestListener<String, GlideDrawable>() {
+                    @Override
+                    public boolean onException(Exception e, String model, Target<GlideDrawable> target, boolean isFirstResource) {
+                        progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(GlideDrawable resource, String model, Target<GlideDrawable> target, boolean isFromMemoryCache, boolean isFirstResource) {
+                        progressBar.setVisibility(View.GONE);
+                        return false;
+                    }
+                })
+                .into(imageView);
+
+        textView.setText(arrTexts[currentPage]);
+
         // Inflate the layout for this fragment
         return view;
     }

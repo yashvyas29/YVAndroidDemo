@@ -25,7 +25,7 @@ import android.widget.TextView;
  */
 public class DashboardFragment extends Fragment {
 
-    final private int pagesCount = 4;
+    private int pagesCount;
     private LinearLayout dotsLayout;
     private TextView[] dots;
 
@@ -76,6 +76,9 @@ public class DashboardFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_dashboard, container, false);
+
+        String[] arrUrls = getResources().getStringArray(R.array.pager_url);
+        pagesCount = arrUrls.length;
 
         ViewPager viewPager = (ViewPager) view.findViewById(R.id.view_pager);
         YVFragmentPagerAdapter pagerAdapter = new YVFragmentPagerAdapter(getChildFragmentManager(), pagesCount);

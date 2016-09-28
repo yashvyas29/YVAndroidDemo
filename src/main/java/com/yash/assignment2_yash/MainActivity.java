@@ -96,6 +96,7 @@ public class MainActivity extends AppCompatActivity
         }
 
         sqLiteHelper = new YVSQLiteHelper(this);
+        processExtraData(getIntent());
     }
 
     @Override
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
 
-            if (arrItemIds.size() > 0 && arrTitles.size() > 0) {
+            if (arrItemIds.size() > 1 && arrTitles.size() > 1) {
                 arrItemIds.remove(arrItemIds.size() - 1);
                 arrTitles.remove(arrTitles.size() - 1);
 
@@ -141,6 +142,20 @@ public class MainActivity extends AppCompatActivity
             notifyUser();
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        processExtraData(intent);
+    }
+
+    private void processExtraData(Intent intent) {
+        Boolean isNotify = intent.getBooleanExtra("isNotify", false);
+        if (isNotify) {
+            Log.d("Notification", "Fired!");
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -382,6 +397,8 @@ public class MainActivity extends AppCompatActivity
         // prepare intent which is triggered if the notification is selected
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("isNotify", true);
+
         // Use System.currentTimeMillis() to have a unique ID for the pending intent
         PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
 

@@ -5,18 +5,28 @@
     tools:context="com.yash.assignment2_yash.ViewPagerFragment">
 
     <!-- TODO: Update blank fragment layout -->
+    <ProgressBar
+        android:id="@+id/pagerProgress"
+        android:visibility="visible"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
     <ImageView
         android:id="@+id/pagerImageView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:src="@drawable/banner1" />
+        android:layout_height="match_parent" />
 
     <TextView
         android:id="@+id/pagerTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/hello_blank_fragment"
         android:textColor="@color/colorItemText"
+        android:textSize="@dimen/text_size_normal"
         android:layout_gravity="center" />
 
 </FrameLayout>
