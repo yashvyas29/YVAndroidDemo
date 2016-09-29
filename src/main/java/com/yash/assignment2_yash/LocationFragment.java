@@ -125,11 +125,11 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
     }
 
     @Override
-    public void onMapReady(GoogleMap googleMap) {
+    public void onMapReady(final GoogleMap googleMap) {
 
         if (arrMapMarkers != null) {
 
-            LatLngBounds.Builder builder = new LatLngBounds.Builder();
+            final LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
             for (Iterator<MarkerOptions> iterator = arrMapMarkers.iterator(); iterator.hasNext(); ) {
                 MarkerOptions marker = iterator.next();
@@ -140,9 +140,14 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback {
                 }
             }
 
-            LatLngBounds bounds = builder.build();
-            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 15);
-            googleMap.animateCamera(cu);
+            googleMap.setOnMapLoadedCallback(new GoogleMap.OnMapLoadedCallback() {
+                @Override
+                public void onMapLoaded() {
+                    LatLngBounds bounds = builder.build();
+                    CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, 0);
+                    googleMap.animateCamera(cu);
+                }
+            });
         }
     }
 

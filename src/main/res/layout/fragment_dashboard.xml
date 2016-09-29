@@ -47,46 +47,64 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:orientation="horizontal"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:paddingBottom="10dp">
 
                 <ImageButton
                     android:id="@+id/button1"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:onClick="buttonClicked"
                     android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/button1" />
 
                 <ImageButton
                     android:id="@+id/button2"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:onClick="buttonClicked"
                     android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/button2" />
 
                 <ImageButton
                     android:id="@+id/button3"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:onClick="buttonClicked"
                     android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/button3" />
 
                 <ImageButton
                     android:id="@+id/button4"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:background="@android:color/transparent"
                     android:onClick="buttonClicked"
                     android:paddingTop="5dp"
+                    android:paddingLeft="5dp"
+                    android:paddingRight="5dp"
                     android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
                     android:src="@drawable/button4" />
 
             </LinearLayout>
@@ -96,6 +114,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:minHeight="200dp"
             android:layout_below="@id/layoutTextButtonsList"
             android:gravity="center"
             android:text="@string/coming_soon_text"

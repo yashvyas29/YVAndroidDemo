@@ -51,6 +51,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -154,7 +156,17 @@ public class MainActivity extends AppCompatActivity
         Boolean isNotify = intent.getBooleanExtra("isNotify", false);
         if (isNotify) {
             Log.d("Notification", "Fired!");
+
+            arrItemIds.clear();
+            arrTitles.clear();
+
+            arrItemIds.add(String.valueOf(R.id.nav_dashboard));
+            arrTitles.add(getString(R.string.home_title));
+
             fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+            navigationView.setCheckedItem(R.id.nav_dashboard);
+            getSupportActionBar().setTitle(getString(R.string.home_title));
         }
     }
 
